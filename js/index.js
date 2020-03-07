@@ -3,9 +3,10 @@ import gallery from './gallery-items.js';
 const galleryUl = document.querySelector('.js-gallery');
 
 const createGallery = function(array) {
-  const arrReduce = array.reduce(
+  return array.reduce(
     (acc, item) =>
-      (acc += item = `<li class="gallery__item">
+      acc +
+      `<li class="gallery__item">
     <a
       class="gallery__link"
       href=${item.original}
@@ -17,13 +18,12 @@ const createGallery = function(array) {
         alt=${item.description}
       />
     </a>
-  </li>`),
+  </li>`,
     '',
   );
-  return arrReduce;
 };
-const itemGallery = createGallery(gallery);
-galleryUl.insertAdjacentHTML('beforeend', itemGallery);
+
+galleryUl.insertAdjacentHTML('beforeend', createGallery(gallery));
 
 const modalWindow = document.querySelector('.js-lightbox');
 const modalImage = document.querySelector('.lightbox__image');
